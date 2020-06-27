@@ -1,0 +1,37 @@
+{
+  "name": "fsf-a14",
+  "version": "0.1.0",
+  "description": "Full Stack Flex Assignment 14: All the News That's Fit to Scrape",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icn2you/fsf-a14.git"
+  },
+  "keywords": [
+    "express",
+    "handlebars",
+    "mongo",
+    "mongoose",
+    "orm",
+    "news",
+    "web scraper"
+  ],
+  "author": "Christopher B. Zenner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icn2you/fsf-a14/issues"
+  },
+  "homepage": "https://github.com/icn2you/fsf-a14#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.4",
+    "mongoose": "^5.9.20",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4"
+  }
+}
