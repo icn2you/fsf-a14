@@ -1,6 +1,9 @@
 // Node dependencies
 const express = require('express');
+const handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
+const { allowInsecurePrototypeAccess } =
+  require('@handlebars/allow-prototype-access');
 const logger = require('morgan');
 
 // Database resources
@@ -19,7 +22,10 @@ app.use(express.static('public'));
 app.use(routes);
 
 // Set up handlebars.
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main',
+  handlebars: allowInsecurePrototypeAccess(handlebars)
+}));
 app.set('view engine', 'handlebars');
 
 app.listen(PORT, () => {
