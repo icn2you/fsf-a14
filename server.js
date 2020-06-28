@@ -2,7 +2,6 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const logger = require('morgan');
-const mongoose = require('mongoose');
 
 // Database resources
 const routes = require('./controllers/newsscraper-controller');
@@ -22,14 +21,6 @@ app.use(routes);
 // Set up handlebars.
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-
-// Mongo Database
-mongoose.connect(
-  'mongodb://localhost/newsscraperdb',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
 
 app.listen(PORT, () => {
   console.log(
