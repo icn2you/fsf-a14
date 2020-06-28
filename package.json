@@ -4,7 +4,7 @@
   "description": "Full Stack Flex Assignment 14: All the News That's Fit to Scrape",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon server.js"
+    "test": "nodemon --trace-warnings server.js"
   },
   "repository": {
     "type": "git",
