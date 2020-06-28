@@ -2,8 +2,15 @@
 <header></header>
 
 <!-- Primary Content -->
-<main>
-  <h1>{{msg}}</h1>
+<main class="container-fluid">
+  <h1>Latest Headlines</h1>
+  {{!-- <div id="latest-headlines" class="card-deck"> --}}
+  <ul>
+    {{#each headlines }}
+      {{> breaking-news }}
+    {{/each}}
+  </ul>
+  {{!-- </div> --}}
 </main>
 
 <!-- Footer -->
