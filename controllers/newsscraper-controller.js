@@ -5,10 +5,9 @@ const db = require('../models');
 
 module.exports = (() => {
   router.get('/', (req, res) => {
-    console.log(`This was your request: ${req}`);
-    console.log(`And this is your response: ${res}`);
+    const hbsObj = { msg: 'Hello, World!' };
 
-    res.render('index');
+    res.render('index', hbsObj);
   });
 
   router.get('/scrape', (req, res) => {
