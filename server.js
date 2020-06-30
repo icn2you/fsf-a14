@@ -22,11 +22,12 @@ app.use(express.static('public'));
 app.use(routes);
 
 // Set up handlebars.
-app.engine('handlebars', exphbs({
+app.engine('hbs', exphbs({
   defaultLayout: 'main',
+  extname: '.hbs',
   handlebars: allowInsecurePrototypeAccess(handlebars)
 }));
-app.set('view engine', 'handlebars');
+app.set('view engine', 'hbs');
 
 app.listen(PORT, () => {
   console.log(
