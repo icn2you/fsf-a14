@@ -6,8 +6,9 @@ const mongoose = require('mongoose');
 const router = require('express').Router();
 
 // Local resources
-const source = 'https://www.democracynow.org/';
 const db = require('../models');
+const source = 'https://www.democracynow.org/';
+const defaultImg = '/assets/img/democracy-now.png';
 
 // Mongo Database
 mongoose.connect(
@@ -16,6 +17,40 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true
   });
+
+const handleScrape = async (response) => {
+  const $ = cheerio.load(response.data);
+  const results = [];
+
+  $('.news_item').each(function (i, elem) {
+    const result = {};
+    const link = $(this).find('h3').children('a');
+
+    result.title = link.text();
+    result.link =
+      `${source.slice(0, source.length - 1)}${link.attr('href')}`;
+    result.date = $(this).find('.date').first().text();
+    result.image =
+      ($(this).find('picture').children('img').attr('src') ||
+      defaultImg);
+
+    results.push(db.Article.findOneAndUpdate({
+      title: result.title,
+      date: result.date
+    }, {
+      title: result.title,
+      link: result.link,
+      date: result.date,
+      image: result.image
+    }, {
+      new: true,
+      upsert: true,
+      useFindAndModify: false
+    }).exec());
+  });
+
+  return Promise.all(results);
+};
 
 module.exports = (() => {
   router.get('/', (req, res) => {
@@ -33,53 +68,17 @@ module.exports = (() => {
     }).sort({ timestamp: -1 }).limit(10);
   });
 
-  router.get('/scrape', (req, res) => {
-    axios.get(source).then((response) => {
-      const $ = cheerio.load(response.data);
-      const results = [];
+  router.get('/scrape', async (req, res) => {
+    try {
+      const response = await axios.get(source);
+      const results = await handleScrape(response);
 
-      $('.news_item').each(function (i, elem) {
-        // DEBUG:
-        // console.log(`Article ${i} = ${$(this).contents()}`);
-
-        const result = {};
-        const link = $(this).find('h3').children('a');
-
-        result.title = link.text();
-        result.link =
-          `${source.slice(0, source.length - 1)}${link.attr('href')}`;
-        result.date = $(this).find('.date').first().text();
-        result.image =
-          $(this).find('picture').children('img').attr('src');
-
-        // DEBUG:
-        console.log(`Article ${i} = ${JSON.stringify(result)}`);
-
-        if (!db.Article.find({ title: result.title }).count()) {
-          db.Article.create(result)
-            .then((dbArticle) => {
-              console.log(dbArticle);
-            })
-            .catch(console.err);
-
-          // DEBUG:
-          results.push(result);
-        }
-      });
-
-      /*
-        Test Code
-
-        Query is returning Object, rather than number. Why?
-      */
-      const test = db.Article.find().count();
-
-      console.log('count: ' + JSON.stringify(test));
-
-      // <-- End Test Code -->
-
-      res.json(results);
-    });
+      if (results) {
+        res.json(results);
+      }
+    } catch (err) {
+      console.err(err.stack);
+    }
   });
 
   return router;
