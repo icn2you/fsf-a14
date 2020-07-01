@@ -1,0 +1,48 @@
+a, a:active, a:focus, a:hover {
+  color: #C42126;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+a:active, a:focus, a:hover {
+  text-decoration: underline;
+}
+
+.jumbotron-fluid {
+  background-image: url("/assets/img/resist-sign.png");
+  background-size: cover;
+  border-bottom: 2px solid #191F24;
+  position: relative;
+}
+
+.jumbotron-fluid::before {
+  content: "";
+  background-color: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.display-4, .lead {
+  position: relative;
+}
+
+.display-4 {
+  color: #191F24;
+}
+
+.lead {
+  color: #C42126;
+}
+
+.card, .card-footer {
+  border-color: #C42126;
+}
+
+#dn-arrow {
+  max-width: 16px;
+}
+
+/*# sourceMappingURL=main.css.map */
