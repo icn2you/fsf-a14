@@ -8,7 +8,7 @@ const router = require('express').Router();
 // Local resources
 const db = require('../models');
 const source = 'https://www.democracynow.org/';
-const defaultImg = '/assets/img/democracy-now.png';
+const defaultImg = '/assets/img/dn-logo.png';
 
 // Mongo Database
 mongoose.connect(
