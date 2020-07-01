@@ -1,8 +1,17 @@
-<div id="{{ _id }}" class="card">
-  <img src="{{ image }}" class="card-img-top" alt="{{ title }}">
-  <div class="card-body">
-    <h5 class="card-title">{{ title }}</h5>
-    <p class="card-text">This is only a test.</p>
-    <p class="card-text"><small class="text-muted">{{ date }}</small></p>
+<div class="col mb-4">
+  <div id="{{ _id }}" class="card">
+    <img src="{{ image }}" class="card-img-top" alt="{{ title }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ title }}</h5>
+      <div>
+        <img id="dn-arrow" src="/assets/img/dn-arrow.png" alt="Democracy Now! Video Arrow">
+        <span class="card-text ml-2">
+          <a href="{{ link }}" target="_blank">Read the story!</a>
+        </span>
+      </div>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ date }}</small>
+    </div>
   </div>
 </div>
