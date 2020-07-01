@@ -2,7 +2,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const mongoose = require('mongoose');
-// const time = require('moment');
+const moment = require('moment');
 const router = require('express').Router();
 
 // Local resources
@@ -62,9 +62,14 @@ module.exports = (() => {
       if (err) throw (err);
 
       // DEBUG:
-      console.log(docs);
+      // console.log(docs);
 
-      res.render('index', { headlines: docs });
+      const news = docs.map((doc) =>
+        Object.defineProperty(doc, 'date', {
+          value: moment(doc.timestamp).format('MM/DD/YYYY')
+        }));
+
+      res.render('index', { headlines: news });
     }).sort({ timestamp: -1 }).limit(10);
   });
 
