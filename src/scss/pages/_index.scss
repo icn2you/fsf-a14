@@ -1,11 +1,22 @@
+body {
+  font-family: $serif-font-stack;
+}
+
 a, a:active, a:focus, a:hover {
   color: $democracy-now-red;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 a:active, a:focus, a:hover {
   text-decoration: underline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.display-4, .card-text, .text-muted {
+  font-family: $sans-font-stack;
 }
 
 .jumbotron-fluid {
@@ -26,6 +37,7 @@ a:active, a:focus, a:hover {
 }
 
 .display-4, .lead {
+  font-weight: 600;
   position: relative;
 }
 
@@ -41,6 +53,25 @@ a:active, a:focus, a:hover {
   border-color: $democracy-now-red;
 }
 
+.card-img-top {
+  border-bottom: 1px solid $democracy-now-red;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
 #dn-arrow {
   max-width: 16px;
+}
+
+.btn-dark {
+  background-color: $democracy-now-blk;
+  border-color: $democracy-now-blk;
+  font-family: $alt-sans-font-stack;
+}
+
+.btn-dark:active, .btn-dark:focus, .btn-dark:hover {
+  background-color: $democracy-now-gry;
+  border-color: $democracy-now-gry;
 }

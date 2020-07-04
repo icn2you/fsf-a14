@@ -1,11 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap");
+body {
+  font-family: "Times New Roman", "Times", "Georgia", serif;
+}
+
 a, a:active, a:focus, a:hover {
   color: #C42126;
   text-decoration: none;
-  text-transform: uppercase;
 }
 
 a:active, a:focus, a:hover {
   text-decoration: underline;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.display-4, .card-text, .text-muted {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 .jumbotron-fluid {
@@ -26,6 +38,7 @@ a:active, a:focus, a:hover {
 }
 
 .display-4, .lead {
+  font-weight: 600;
   position: relative;
 }
 
@@ -41,8 +54,27 @@ a:active, a:focus, a:hover {
   border-color: #C42126;
 }
 
+.card-img-top {
+  border-bottom: 1px solid #C42126;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
 #dn-arrow {
   max-width: 16px;
+}
+
+.btn-dark {
+  background-color: #191F24;
+  border-color: #191F24;
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+.btn-dark:active, .btn-dark:focus, .btn-dark:hover {
+  background-color: #A1A8AE;
+  border-color: #A1A8AE;
 }
 
 /*# sourceMappingURL=main.css.map */
