@@ -1,17 +1,20 @@
 <div class="col mb-4">
-  <div id="{{ _id }}" class="card">
+  <div id="{{ _id }}" class="card h-100">
     <img src="{{ image }}" class="card-img-top" alt="{{ title }}">
     <div class="card-body">
+      <div class="mb-2">
+        <small class="text-muted">{{ date }}</small>
+      </div>
       <h5 class="card-title">{{ title }}</h5>
-      <div>
+      <div class="mb-4">
         <img id="dn-arrow" src="/assets/img/dn-arrow.png" alt="Democracy Now! Video Arrow">
-        <span class="card-text ml-2">
+        <span class="card-text ml-2 uppercase">
           <a href="{{ link }}" target="_blank">Read the story!</a>
         </span>
       </div>
-    </div>
-    <div class="card-footer">
-      <small class="text-muted">{{ date }}</small>
+      <div class="meow">
+        <button type="button" class="btn btn-dark btn-sm">Save Article</button>
+      </div>
     </div>
   </div>
 </div>
