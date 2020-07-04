@@ -66,7 +66,7 @@ module.exports = (() => {
 
       const news = docs.map((doc) =>
         Object.defineProperty(doc, 'date', {
-          value: moment(doc.timestamp).format('MM/DD/YYYY')
+          value: moment(doc.date).format('MM/DD/YYYY')
         }));
 
       res.render('index', { headlines: news });
