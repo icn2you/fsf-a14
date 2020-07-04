@@ -15,63 +15,105 @@ a:active, a:focus, a:hover {
   text-transform: uppercase;
 }
 
-.display-4, .card-text, .text-muted {
-  font-family: $sans-font-stack;
+header {
+  nav {
+    .navbar-brand {
+      font-size: 1.5rem;
+    }
+
+    #navbar-links {
+      font-family: $alt-sans-font-stack;
+      font-weight: 700;
+    }
+  }
+
+  .jumbotron-fluid {
+    background-image: url('/assets/img/resist-sign.png');
+    background-size: cover;
+    border-bottom: 2px solid $democracy-now-blk;
+    position: relative;
+  }
+
+  .jumbotron-fluid::before {
+    content: '';
+    background-color: rgba(255,255,255,0.8);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; 
+  }
+
+  .display-4, .lead {
+    font-weight: 600;
+    position: relative;
+  }
+
+  .display-4 {
+    color: $democracy-now-blk;
+    font-family: $sans-font-stack;
+  }
+
+  .lead {
+    color: $democracy-now-red;
+  }
 }
 
-.jumbotron-fluid {
-  background-image: url('/assets/img/resist-sign.png');
-  background-size: cover;
-  border-bottom: 2px solid $democracy-now-blk;
-  position: relative;
+main {
+  .card, .card-footer {
+    border-color: $democracy-now-red;
+  }
+
+  .card-img-top {
+    border-bottom: 1px solid $democracy-now-red;
+  }
+
+  .card-title {
+    font-weight: 600;
+  }
+
+  .card-text, .text-muted {
+    font-family: $sans-font-stack;
+  }
+
+  #dn-arrow {
+    max-width: 16px;
+  }
+
+  .btn-dark {
+    background-color: $democracy-now-blk;
+    border-color: $democracy-now-blk;
+    font-family: $alt-sans-font-stack;
+    font-weight: 700;
+  }
+
+  .btn-dark:active, .btn-dark:focus, .btn-dark:hover {
+    background-color: $democracy-now-gry;
+    border-color: $democracy-now-gry;
+  }
 }
 
-.jumbotron-fluid::before {
-  content: '';
-  background-color: rgba(255,255,255,0.8);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0; 
-}
-
-.display-4, .lead {
-  font-weight: 600;
-  position: relative;
-}
-
-.display-4 {
-  color: $democracy-now-blk;
-}
-
-.lead {
-  color: $democracy-now-red;
-}
-
-.card, .card-footer {
-  border-color: $democracy-now-red;
-}
-
-.card-img-top {
-  border-bottom: 1px solid $democracy-now-red;
-}
-
-.card-title {
-  font-weight: 600;
-}
-
-#dn-arrow {
-  max-width: 16px;
-}
-
-.btn-dark {
-  background-color: $democracy-now-blk;
-  border-color: $democracy-now-blk;
+footer {
+  background: $democracy-now-blk;
+  border-top: 5px $democracy-now-red solid;
+  color: white;
   font-family: $alt-sans-font-stack;
-}
+  font-weight: 300;
 
-.btn-dark:active, .btn-dark:focus, .btn-dark:hover {
-  background-color: $democracy-now-gry;
-  border-color: $democracy-now-gry;
+  #copyright {
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin: 1.5vh 0 1vh;
+  }
+  
+  #attribution {
+    font-size: 0.85rem;
+    line-height: 1.25em;
+    margin-bottom: 2vh;
+  }
+  
+  a, a:active, a:hover, a:visited {
+    color: $democracy-now-red;
+    font-weight: 700;
+  }
 }

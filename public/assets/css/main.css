@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap");
 body {
   font-family: "Times New Roman", "Times", "Georgia", serif;
 }
@@ -16,18 +16,20 @@ a:active, a:focus, a:hover {
   text-transform: uppercase;
 }
 
-.display-4, .card-text, .text-muted {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+header nav .navbar-brand {
+  font-size: 1.5rem;
 }
-
-.jumbotron-fluid {
+header nav #navbar-links {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 700;
+}
+header .jumbotron-fluid {
   background-image: url("/assets/img/resist-sign.png");
   background-size: cover;
   border-bottom: 2px solid #191F24;
   position: relative;
 }
-
-.jumbotron-fluid::before {
+header .jumbotron-fluid::before {
   content: "";
   background-color: rgba(255, 255, 255, 0.8);
   position: absolute;
@@ -36,45 +38,64 @@ a:active, a:focus, a:hover {
   bottom: 0;
   left: 0;
 }
-
-.display-4, .lead {
+header .display-4, header .lead {
   font-weight: 600;
   position: relative;
 }
-
-.display-4 {
+header .display-4 {
   color: #191F24;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
-
-.lead {
+header .lead {
   color: #C42126;
 }
 
-.card, .card-footer {
+main .card, main .card-footer {
   border-color: #C42126;
 }
-
-.card-img-top {
+main .card-img-top {
   border-bottom: 1px solid #C42126;
 }
-
-.card-title {
+main .card-title {
   font-weight: 600;
 }
-
-#dn-arrow {
+main .card-text, main .text-muted {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+main #dn-arrow {
   max-width: 16px;
 }
-
-.btn-dark {
+main .btn-dark {
   background-color: #191F24;
   border-color: #191F24;
   font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 700;
 }
-
-.btn-dark:active, .btn-dark:focus, .btn-dark:hover {
+main .btn-dark:active, main .btn-dark:focus, main .btn-dark:hover {
   background-color: #A1A8AE;
   border-color: #A1A8AE;
+}
+
+footer {
+  background: #191F24;
+  border-top: 5px #C42126 solid;
+  color: white;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 300;
+}
+footer #copyright {
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin: 1.5vh 0 1vh;
+}
+footer #attribution {
+  font-size: 0.85rem;
+  line-height: 1.25em;
+  margin-bottom: 2vh;
+}
+footer a, footer a:active, footer a:hover, footer a:visited {
+  color: #C42126;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=main.css.map */
