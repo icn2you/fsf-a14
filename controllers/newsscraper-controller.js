@@ -88,7 +88,10 @@ module.exports = (() => {
           value: moment(doc.date).format('MM/DD/YYYY')
         }));
 
-      res.render('index', { headlines: news });
+      res.render('index', { 
+        saved: true,
+        headlines: news
+      });
     }).sort({ date: -1 });
   });
 

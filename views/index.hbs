@@ -24,8 +24,13 @@
   </nav>
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
+      {{#unless saved }}
       <h1 class="display-4 mt-3 uppercase">Latest Headlines</h1>
       <p class="lead"><span class="uppercase">Democracy Now!</span> Edition</p>
+      {{else}}
+      <h1 class="display-4 mt-3 uppercase">Saved Headlines</h1>
+      <p class="lead">Your news articles when you want them</p>      
+      {{/unless}}
     </div>
   </div>
 </header>
