@@ -33,6 +33,9 @@ const handleScrape = async (response) => {
     result.image =
       ($(this).find('picture').children('img').attr('src') ||
       defaultImg);
+    result.saved = false;
+    result.note = null;
+    result.timestamp = Date.now();
 
     results.push(db.Article.findOneAndUpdate({
       title: result.title,
@@ -41,7 +44,10 @@ const handleScrape = async (response) => {
       title: result.title,
       link: result.link,
       date: result.date,
-      image: result.image
+      image: result.image,
+      saved: result.saved,
+      note: result.note,
+      timestamp: result.timestamp
     }, {
       new: true,
       upsert: true,
@@ -74,10 +80,6 @@ module.exports = (() => {
   });
 
   router.get('/saved', (req, res) => {
-    // const hbsObj = { msg: 'Hello, World!' };
-    //
-    // res.render('index', hbsObj);
-
     db.Article.find({ saved: { $eq: true } }, (err, docs) => {
       if (err) throw (err);
 
@@ -120,6 +122,22 @@ module.exports = (() => {
       // side accordingly.
       if (result.nModified > 0 && result.ok === 1) {
         res.send({ saved: true });
+      }
+    } catch (err) {
+      console.err(err.stack);
+      res.status(500);
+    }
+
+    res.end();
+  });
+
+  router.put('/clear', async (req, res) => {
+    try {
+      const result = await db.Article.deleteMany(
+        { saved: { $eq: false } }).exec();
+
+      if (result.deletedCount > 0 && result.ok === 1) {
+        res.send({ cleared: true });
       }
     } catch (err) {
       console.err(err.stack);
