@@ -58,7 +58,7 @@ module.exports = (() => {
     //
     // res.render('index', hbsObj);
 
-    db.Article.find((err, docs) => {
+    db.Article.find({ saved: { $eq: false } }, (err, docs) => {
       if (err) throw (err);
 
       // DEBUG:
@@ -91,15 +91,19 @@ module.exports = (() => {
   });
 
   router.post('/article/:id', async (req, res) => {
-    // DEBUG:
-    console.log(`id = ${req.params.id}`);
-
     try {
-      db.Article.updateOne(
+      // Attempt to update the selected article to saved.
+      const result = await db.Article.updateOne(
         { _id: req.params.id },
         { $set: { saved: true } },
         { upsert: true }
-      );
+      ).exec();
+
+      // If the update operation was successful, notify client
+      // side accordingly.
+      if (result.nModified > 0 && result.ok === 1) {
+        res.send({ saved: true });
+      }
     } catch (err) {
       console.err(err.stack);
       res.status(500);
