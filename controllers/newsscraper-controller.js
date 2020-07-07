@@ -8,7 +8,7 @@ const router = require('express').Router();
 // Local resources
 const db = require('../models');
 const source = 'https://www.democracynow.org/';
-const defaultImg = '/assets/img/dn-logo.png';
+const defaultImg = '/assets/img/dn-default.png';
 
 // Mongo Database
 mongoose.connect(
@@ -70,7 +70,7 @@ module.exports = (() => {
         }));
 
       res.render('index', { headlines: news });
-    }).sort({ timestamp: -1 }).limit(10);
+    }).sort({ date: -1 }).limit(10);
   });
 
   router.get('/scrape', async (req, res) => {
@@ -79,11 +79,33 @@ module.exports = (() => {
       const results = await handleScrape(response);
 
       if (results) {
-        res.json(results);
+        // res.status(200);
+        res.redirect('back');
       }
     } catch (err) {
       console.err(err.stack);
+      res.status(500);
     }
+
+    res.end();
+  });
+
+  router.post('/article/:id', async (req, res) => {
+    // DEBUG:
+    console.log(`id = ${req.params.id}`);
+
+    try {
+      db.Article.updateOne(
+        { _id: req.params.id },
+        { $set: { saved: true } },
+        { upsert: true }
+      );
+    } catch (err) {
+      console.err(err.stack);
+      res.status(500);
+    }
+
+    res.end();
   });
 
   return router;
