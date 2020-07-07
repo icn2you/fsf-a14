@@ -73,6 +73,23 @@ module.exports = (() => {
     }).sort({ date: -1 }).limit(10);
   });
 
+  router.get('/saved', (req, res) => {
+    // const hbsObj = { msg: 'Hello, World!' };
+    //
+    // res.render('index', hbsObj);
+
+    db.Article.find({ saved: { $eq: true } }, (err, docs) => {
+      if (err) throw (err);
+
+      const news = docs.map((doc) =>
+        Object.defineProperty(doc, 'date', {
+          value: moment(doc.date).format('MM/DD/YYYY')
+        }));
+
+      res.render('index', { headlines: news });
+    }).sort({ date: -1 });
+  });
+
   router.get('/scrape', async (req, res) => {
     try {
       const response = await axios.get(source);
@@ -80,7 +97,7 @@ module.exports = (() => {
 
       if (results) {
         // res.status(200);
-        res.redirect('back');
+        res.redirect('/');
       }
     } catch (err) {
       console.err(err.stack);
