@@ -6,9 +6,6 @@ $(() => {
 
     const artId = $(this).attr('data-art-id');
 
-    // DEBUG:
-    console.log(`artId: ${artId}`);
-
     $.post(`/article/${artId}`)
       .then(async (response) => {
         if (response.saved) {
