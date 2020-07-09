@@ -80,11 +80,19 @@ main {
     max-width: 16px;
   }
 
+  .btn {
+    font-family: $alt-sans-font-stack;
+    font-weight: 700;
+  }
+
+  .btn-danger {
+    background-color: $democracy-now-red;
+    border-color: $democracy-now-red;
+  }
+
   .btn-dark {
     background-color: $democracy-now-blk;
     border-color: $democracy-now-blk;
-    font-family: $alt-sans-font-stack;
-    font-weight: 700;
   }
 
   .btn-dark:active, .btn-dark:focus, .btn-dark:hover {

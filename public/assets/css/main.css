@@ -65,11 +65,17 @@ main .card-text, main .text-muted {
 main #dn-arrow {
   max-width: 16px;
 }
+main .btn {
+  font-family: "Open Sans Condensed", sans-serif;
+  font-weight: 700;
+}
+main .btn-danger {
+  background-color: #C42126;
+  border-color: #C42126;
+}
 main .btn-dark {
   background-color: #191F24;
   border-color: #191F24;
-  font-family: "Open Sans Condensed", sans-serif;
-  font-weight: 700;
 }
 main .btn-dark:active, main .btn-dark:focus, main .btn-dark:hover {
   background-color: #A1A8AE;
