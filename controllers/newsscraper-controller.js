@@ -117,14 +117,14 @@ module.exports = (() => {
       // Attempt to update the selected article to saved.
       const result = await db.Article.updateOne(
         { _id: req.params.id },
-        { $set: { saved: true } },
+        { $set: { saved: req.body.save } },
         { upsert: true }
       ).exec();
 
       // If the update operation was successful, notify client
       // side accordingly.
       if (result.nModified > 0 && result.ok === 1) {
-        res.send({ saved: true });
+        res.send({ updated: true });
       }
     } catch (err) {
       console.err(err.stack);

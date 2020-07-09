@@ -6,9 +6,9 @@ $(() => {
 
     const artId = $(this).attr('data-art-id');
 
-    $.post(`/article/${artId}`)
+    $.post(`/article/${artId}`, { save: true })
       .then(async (response) => {
-        if (response.saved) {
+        if (response.updated) {
           location.reload();
 
           $('html, body').animate({ scrollTop: 0 }, 100);
