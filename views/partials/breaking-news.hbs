@@ -6,15 +6,20 @@
         <small class="text-muted">{{ date }}</small>
       </div>
       <h5 class="card-title">{{ title }}</h5>
-      <div class="mb-4">
+      <div class="news-headline">
         <img id="dn-arrow" src="/assets/img/dn-arrow.png" alt="Democracy Now! Video Arrow">
         <span class="card-text ml-2 uppercase">
           <a href="{{ link }}" target="_blank">Read the story!</a>
         </span>
       </div>
-      <div>
-        <button type="button" class="btn btn-dark btn-sm save" data-art-id="{{ _id }}"><i class="far fa-save"></i>&nbsp;Save Article</button>
-      </div>
+    </div>
+    <div class="card-footer bg-transparent border-top-0">
+      {{#unless saved }}
+      <button type="button" class="btn btn-dark btn-sm save" data-art-id="{{ _id }}"><i class="far fa-save"></i>&nbsp;Save Article</button>
+      {{else}}
+      <button type="button" class="btn btn-danger btn-sm delete" data-art-id="{{ _id }}"><i class="far fa-trash-alt"></i>&nbsp;Delete from Saved Articles</button>
+      <button type="button" class="btn btn-dark btn-sm note" data-art-id="{{ _id }}"><i class="far fa-clipboard"></i>&nbsp;Add Note to Article</button>        
+      {{/unless}}
     </div>
   </div>
 </div>
