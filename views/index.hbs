@@ -44,6 +44,34 @@
   </div>
 </main>
 
+<!-- Notes Modal -->
+<div id="notes-modal" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="you-plus-friend-title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="notes-title">Notes for &ldquo;{{ title }}&rdoquo;</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="art-notes" class="modal-body" data-art-id="{{ _id }}">
+        {{#each notes }}
+          {{> article-notes }}
+        {{/each}}
+      </div>
+      <div class="form-group">
+        <label for="new-art-note"></label>
+        <textarea id="new-art-note" class="form-control" rows="3" placeholder="New note ..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <div class="mx-auto">
+          <button id="save-note" type="button" class="btn btn-dark btn-sm" data-dismiss="modal"><i class="far fa-save"></i>&nbsp;Save Note</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Footer -->
 <footer class="pb-2">
   <div class="container-fluid text-center">
