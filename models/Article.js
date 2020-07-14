@@ -34,15 +34,10 @@ module.exports = (() => {
       type: Boolean,
       default: false
     },
-    note: {
+    notes: [{
       type: Schema.Types.ObjectId,
       ref: 'Note'
-    }
-    /* timestamp: {
-      type: Date,
-      required: true,
-      default: Date.now
-    } */
+    }]
   }, { timestamps: true });
 
   return mongoose.model('Article', ArticleSchema);
