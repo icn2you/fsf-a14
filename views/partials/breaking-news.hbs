@@ -18,7 +18,7 @@
       <button type="button" class="btn btn-dark btn-sm save" data-art-id="{{ _id }}"><i class="far fa-save"></i>&nbsp;Save Article</button>
       {{else}}
       <button type="button" class="btn btn-danger btn-sm delete" data-art-id="{{ _id }}"><i class="far fa-trash-alt"></i>&nbsp;Delete from Saved Articles</button>
-      <button type="button" class="btn btn-dark btn-sm note" data-art-id="{{ _id }}"><i class="far fa-clipboard"></i>&nbsp;Add Note to Article</button>        
+      <button type="button" class="btn btn-dark btn-sm notes" data-art-id="{{ _id }}" data-art-title="{{ title }}"><i class="far fa-clipboard"></i>&nbsp;Article Notes</button>        
       {{/unless}}
     </div>
   </div>
