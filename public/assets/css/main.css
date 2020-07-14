@@ -67,7 +67,20 @@ main #dn-arrow {
 }
 
 #notes-modal .modal-body, #notes-modal .form-group {
-  margin: 1rem 1rem 0.5rem;
+  margin: 0 1rem;
+}
+#notes-modal .container {
+  margin-bottom: 0;
+}
+#notes-modal #art-notes .timestamp {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+#notes-modal #art-notes button {
+  background-color: transparent;
+  border: none;
+}
+#notes-modal #art-notes button:active, #notes-modal #art-notes button:focus, #notes-modal #art-notes button:hover {
+  color: #C42126;
 }
 #notes-modal .form-group textarea {
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
@@ -90,7 +103,6 @@ main #dn-arrow {
   background-color: #191F24;
   border-color: #191F24;
 }
-
 .btn-dark:active, .btn-dark:focus, .btn-dark:hover {
   background-color: #A1A8AE;
   border-color: #A1A8AE;

@@ -83,7 +83,26 @@ main {
 
 #notes-modal {
   .modal-body, .form-group {
-    margin: 1rem 1rem 0.5rem;
+    margin: 0 1rem;
+  }
+
+  .container {
+    margin-bottom: 0;
+  }
+
+  #art-notes {
+    .timestamp {
+      font-family: $sans-font-stack;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+
+      &:active, &:focus, &:hover {
+        color: $democracy-now-red;
+      }
+    }
   }
 
   .form-group {
@@ -110,11 +129,11 @@ main {
 .btn-dark {
   background-color: $democracy-now-blk;
   border-color: $democracy-now-blk;
-}
 
-.btn-dark:active, .btn-dark:focus, .btn-dark:hover {
-  background-color: $democracy-now-gry;
-  border-color: $democracy-now-gry;
+  &:active, &:focus, &:hover {
+    background-color: $democracy-now-gry;
+    border-color: $democracy-now-gry;
+  }
 }
 
 footer {
