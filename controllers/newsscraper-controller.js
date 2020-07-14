@@ -34,8 +34,6 @@ const handleScrape = async (response) => {
       ($(this).find('picture').children('img').attr('src') ||
       defaultImg);
     result.saved = false;
-    result.note = null;
-    result.timestamp = Date.now();
 
     results.push(db.Article.findOneAndUpdate({
       title: result.title,
@@ -45,9 +43,7 @@ const handleScrape = async (response) => {
       link: result.link,
       date: result.date,
       image: result.image,
-      saved: result.saved,
-      note: result.note,
-      timestamp: result.timestamp
+      saved: result.saved
     }, {
       new: true,
       upsert: true,
@@ -80,9 +76,9 @@ module.exports = (() => {
   });
 
   router.get('/notes/:id/:title', (req, res) => {
-    // DEBUG:
+    /* DEBUG:
     db.Article.findById(req.params.id)
-      .populate('note')
+      .populate('notes')
       .then((art) => {
         // console.log(`article: ${art}`);
 
@@ -95,27 +91,27 @@ module.exports = (() => {
       .catch((err) => {
         console.err(err);
       });
+    */
 
-    /*
-    db.Article.findById(req.params.id, (err, docs) => {
+    db.Article.findById(req.params.id, (err, art) => {
       if (err) throw (err);
 
       // DEBUG:
-      console.log(JSON.stringify(docs));
+      console.log(`db article = ${JSON.stringify(art)}`);
 
-      /* - [ ] Figure out why the defineProperty method is not 
+      /* - [ ] Figure out why the defineProperty method is not
               working as defined
-      const notes = docs.map((doc) =>
-        Object.defineProperty(doc.note, 'date', {
-          value: moment(doc.note.updatedAt).format('MM/DD/YYYY')
+      const notes = art.notes.map((note) =>
+        Object.defineProperty(note, 'date', {
+          value: moment(note.updatedAt).format('MM/DD/YYYY h:mm A')
         }));
       */
-      /*
-      const notes = docs.map((doc) => {
+
+      const notes = art.notes.map((note) => {
         return {
-          id: doc.note._id,
-          body: doc.note.body,
-          date: moment(doc.note.updatedAt).format('MM/DD/YYYY h:mm A')
+          id: note._id,
+          body: note.body,
+          date: moment(note.updatedAt).format('MM/DD/YYYY h:mm A')
         };
       });
 
@@ -124,8 +120,7 @@ module.exports = (() => {
         title: req.params.title,
         notes: notes
       });
-    }).populate('note').sort({ updatedAt: -1 });
-    */
+    }).populate('notes').sort({ updatedAt: -1 });
   });
 
   router.get('/saved', (req, res) => {
@@ -186,12 +181,12 @@ module.exports = (() => {
   router.post('/notes/:id', async (req, res) => {
     try {
       let results;
-      await db.Note.create(req.body, async (err, docs) => {
+      await db.Note.create(req.body, async (err, note) => {
         if (err) throw err;
 
         results = await db.Article.findOneAndUpdate(
           { _id: req.params.id },
-          { note: docs._id },
+          { $push: { notes: note._id }},
           { new: true, useFindAndModify: false }
         ).exec();
       });
