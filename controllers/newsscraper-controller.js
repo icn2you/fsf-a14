@@ -79,6 +79,55 @@ module.exports = (() => {
     }).sort({ date: -1 }).limit(10);
   });
 
+  router.get('/notes/:id/:title', (req, res) => {
+    // DEBUG:
+    db.Article.findById(req.params.id)
+      .populate('note')
+      .then((art) => {
+        // console.log(`article: ${art}`);
+
+        res.json({
+          id: req.params.id,
+          title: req.params.title,
+          article: art
+        });
+      })
+      .catch((err) => {
+        console.err(err);
+      });
+
+    /*
+    db.Article.findById(req.params.id, (err, docs) => {
+      if (err) throw (err);
+
+      // DEBUG:
+      console.log(JSON.stringify(docs));
+
+      /* - [ ] Figure out why the defineProperty method is not 
+              working as defined
+      const notes = docs.map((doc) =>
+        Object.defineProperty(doc.note, 'date', {
+          value: moment(doc.note.updatedAt).format('MM/DD/YYYY')
+        }));
+      */
+      /*
+      const notes = docs.map((doc) => {
+        return {
+          id: doc.note._id,
+          body: doc.note.body,
+          date: moment(doc.note.updatedAt).format('MM/DD/YYYY h:mm A')
+        };
+      });
+
+      res.json({
+        id: req.params.id,
+        title: req.params.title,
+        notes: notes
+      });
+    }).populate('note').sort({ updatedAt: -1 });
+    */
+  });
+
   router.get('/saved', (req, res) => {
     db.Article.find({ saved: { $eq: true } }, (err, docs) => {
       if (err) throw (err);
@@ -126,6 +175,28 @@ module.exports = (() => {
       if (result.nModified > 0 && result.ok === 1) {
         res.send({ updated: true });
       }
+    } catch (err) {
+      console.err(err.stack);
+      res.status(500);
+    }
+
+    res.end();
+  });
+
+  router.post('/notes/:id', async (req, res) => {
+    try {
+      let results;
+      await db.Note.create(req.body, async (err, docs) => {
+        if (err) throw err;
+
+        results = await db.Article.findOneAndUpdate(
+          { _id: req.params.id },
+          { note: docs._id },
+          { new: true, useFindAndModify: false }
+        ).exec();
+      });
+
+      res.json(results);
     } catch (err) {
       console.err(err.stack);
       res.status(500);
