@@ -37,13 +37,13 @@ module.exports = (() => {
     note: {
       type: Schema.Types.ObjectId,
       ref: 'Note'
-    },
-    timestamp: {
+    }
+    /* timestamp: {
       type: Date,
       required: true,
       default: Date.now
-    }
-  });
+    } */
+  }, { timestamps: true });
 
   return mongoose.model('Article', ArticleSchema);
 })();
