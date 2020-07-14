@@ -65,19 +65,33 @@ main .card-text, main .text-muted {
 main #dn-arrow {
   max-width: 16px;
 }
-main .btn {
+
+#notes-modal .modal-body, #notes-modal .form-group {
+  margin: 1rem 1rem 0.5rem;
+}
+#notes-modal .form-group textarea {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+#notes-modal .modal-footer {
+  border-top: none;
+}
+
+.btn {
   font-family: "Open Sans Condensed", sans-serif;
   font-weight: 700;
 }
-main .btn-danger {
+
+.btn-danger {
   background-color: #C42126;
   border-color: #C42126;
 }
-main .btn-dark {
+
+.btn-dark {
   background-color: #191F24;
   border-color: #191F24;
 }
-main .btn-dark:active, main .btn-dark:focus, main .btn-dark:hover {
+
+.btn-dark:active, .btn-dark:focus, .btn-dark:hover {
   background-color: #A1A8AE;
   border-color: #A1A8AE;
 }

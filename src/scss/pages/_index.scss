@@ -79,26 +79,42 @@ main {
   #dn-arrow {
     max-width: 16px;
   }
+}
 
-  .btn {
-    font-family: $alt-sans-font-stack;
-    font-weight: 700;
+#notes-modal {
+  .modal-body, .form-group {
+    margin: 1rem 1rem 0.5rem;
   }
 
-  .btn-danger {
-    background-color: $democracy-now-red;
-    border-color: $democracy-now-red;
+  .form-group {
+    textarea {
+      font-family: $sans-font-stack;
+    }
   }
 
-  .btn-dark {
-    background-color: $democracy-now-blk;
-    border-color: $democracy-now-blk;
+  .modal-footer {
+    border-top: none;
   }
+}
 
-  .btn-dark:active, .btn-dark:focus, .btn-dark:hover {
-    background-color: $democracy-now-gry;
-    border-color: $democracy-now-gry;
-  }
+.btn {
+  font-family: $alt-sans-font-stack;
+  font-weight: 700;
+}
+
+.btn-danger {
+  background-color: $democracy-now-red;
+  border-color: $democracy-now-red;
+}
+
+.btn-dark {
+  background-color: $democracy-now-blk;
+  border-color: $democracy-now-blk;
+}
+
+.btn-dark:active, .btn-dark:focus, .btn-dark:hover {
+  background-color: $democracy-now-gry;
+  border-color: $democracy-now-gry;
 }
 
 footer {
