@@ -49,18 +49,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title" id="notes-title">Notes for &ldquo;{{ title }}&rdoquo;</h2>
+        <h2 class="modal-title" id="notes-title"></h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div id="art-notes" class="modal-body container" data-art-id="{{ _id }}">
-        {{#each notes }}
-          {{> article-notes }}
-        {{/each}}
-      </div>
+      <div id="art-notes" class="modal-body container"></div>
       <div class="form-group">
-        {{!-- <label for="new-art-note"></label> --}}
         <textarea id="new-art-note" class="form-control" rows="3" placeholder="New note ..."></textarea>
       </div>
       <div class="modal-footer">
