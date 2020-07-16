@@ -56,19 +56,12 @@ const handleScrape = async (response) => {
 
 module.exports = (() => {
   router.get('/', (req, res) => {
-    // const hbsObj = { msg: 'Hello, World!' };
-    //
-    // res.render('index', hbsObj);
-
-    db.Article.find({ saved: { $eq: false } }, (err, docs) => {
+    db.Article.find({ saved: { $eq: false } }, (err, arts) => {
       if (err) throw (err);
 
-      // DEBUG:
-      // console.log(docs);
-
-      const news = docs.map((doc) =>
-        Object.defineProperty(doc, 'date', {
-          value: moment(doc.date).format('MM/DD/YYYY')
+      const news = arts.map((art) =>
+        Object.defineProperty(art, 'date', {
+          value: moment(art.date).format('MM/DD/YYYY')
         }));
 
       res.render('index', { headlines: news });
@@ -76,28 +69,8 @@ module.exports = (() => {
   });
 
   router.get('/notes/:id/:title', (req, res) => {
-    /* DEBUG:
-    db.Article.findById(req.params.id)
-      .populate('notes')
-      .then((art) => {
-        // console.log(`article: ${art}`);
-
-        res.json({
-          id: req.params.id,
-          title: req.params.title,
-          article: art
-        });
-      })
-      .catch((err) => {
-        console.err(err);
-      });
-    */
-
     db.Article.findById(req.params.id, (err, art) => {
       if (err) throw (err);
-
-      // DEBUG:
-      console.log(`db article = ${JSON.stringify(art)}`);
 
       /* - [ ] Figure out why the defineProperty method is not
               working as defined
@@ -124,15 +97,15 @@ module.exports = (() => {
   });
 
   router.get('/saved', (req, res) => {
-    db.Article.find({ saved: { $eq: true } }, (err, docs) => {
+    db.Article.find({ saved: { $eq: true } }, (err, arts) => {
       if (err) throw (err);
 
-      const news = docs.map((doc) =>
-        Object.defineProperty(doc, 'date', {
-          value: moment(doc.date).format('MM/DD/YYYY')
+      const news = arts.map((art) =>
+        Object.defineProperty(art, 'date', {
+          value: moment(art.date).format('MM/DD/YYYY')
         }));
 
-      res.render('index', { 
+      res.render('index', {
         saved: true,
         headlines: news
       });
@@ -180,25 +153,23 @@ module.exports = (() => {
 
   router.post('/notes/:id', async (req, res) => {
     try {
-      let results;
-      await db.Note.create(req.body, async (err, note) => {
-        if (err) throw err;
+      const note = await db.Note.create(req.body);
+      const article = await db.Article.findOneAndUpdate(
+        { _id: req.params.id },
+        { $push: { notes: note._id } },
+        { new: true, useFindAndModify: false }
+      ).exec();
 
-        results = await db.Article.findOneAndUpdate(
-          { _id: req.params.id },
-          { $push: { notes: note._id }},
-          { new: true, useFindAndModify: false }
-        ).exec();
-      });
-
-      res.json(results);
+      if (article) {
+        res.send({ updated: true });
+      }
     } catch (err) {
       console.err(err.stack);
       res.status(500);
     }
 
     res.end();
-  });
+});
 
   router.put('/clear', async (req, res) => {
     try {
@@ -207,6 +178,22 @@ module.exports = (() => {
 
       if (result.deletedCount > 0 && result.ok === 1) {
         res.send({ cleared: true });
+      }
+    } catch (err) {
+      console.err(err.stack);
+      res.status(500);
+    }
+
+    res.end();
+  });
+
+  router.put('/note/:id', async (req, res) => {
+    try {
+      const result = await db.Note.deleteOne(
+        { _id: req.params.id }).exec();
+
+      if (result.deletedCount > 0 && result.ok === 1) {
+        res.send({ deleted: true });
       }
     } catch (err) {
       console.err(err.stack);
