@@ -20,6 +20,12 @@ mongoose.connect(
     useUnifiedTopology: true
   });
 
+mongoose.connection
+  .on('error', console.error.bind(console, 'Error!'))
+  .once('connected', () => {
+    console.log('Connected!');
+  });
+
 const handleScrape = async (response) => {
   const $ = cheerio.load(response.data);
   const results = [];
