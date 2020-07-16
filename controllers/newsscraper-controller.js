@@ -21,9 +21,10 @@ mongoose.connect(
   });
 
 mongoose.connection
-  .on('error', console.error.bind(console, 'Error!'))
+  .on('error', console.error.bind(
+    console, 'There was an error connecting to the database.'))
   .once('connected', () => {
-    console.log('Connected!');
+    console.log('Successfully connected to the database.');
   });
 
 const handleScrape = async (response) => {
