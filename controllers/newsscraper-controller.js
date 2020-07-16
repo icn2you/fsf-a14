@@ -33,7 +33,6 @@ const handleScrape = async (response) => {
     result.image =
       ($(this).find('picture').children('img').attr('src') ||
       defaultImg);
-    result.saved = false;
 
     results.push(db.Article.findOneAndUpdate({
       title: result.title,
@@ -42,8 +41,7 @@ const handleScrape = async (response) => {
       title: result.title,
       link: result.link,
       date: result.date,
-      image: result.image,
-      saved: result.saved
+      image: result.image
     }, {
       new: true,
       upsert: true,
@@ -56,7 +54,7 @@ const handleScrape = async (response) => {
 
 module.exports = (() => {
   router.get('/', (req, res) => {
-    db.Article.find({ saved: { $eq: false } }, (err, arts) => {
+    db.Article.find({ saved: false }, (err, arts) => {
       if (err) throw (err);
 
       const news = arts.map((art) =>
@@ -73,7 +71,7 @@ module.exports = (() => {
       if (err) throw (err);
 
       /* - [ ] Figure out why the defineProperty method is not
-              working as defined
+              working as defined here.
       const notes = art.notes.map((note) =>
         Object.defineProperty(note, 'date', {
           value: moment(note.updatedAt).format('MM/DD/YYYY h:mm A')
@@ -97,7 +95,7 @@ module.exports = (() => {
   });
 
   router.get('/saved', (req, res) => {
-    db.Article.find({ saved: { $eq: true } }, (err, arts) => {
+    db.Article.find({ saved: true }, (err, arts) => {
       if (err) throw (err);
 
       const news = arts.map((art) =>
