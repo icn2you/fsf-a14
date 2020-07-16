@@ -85,7 +85,16 @@ main #dn-arrow {
 #notes-modal .form-group textarea {
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
-#notes-modal .modal-footer {
+
+#alert-modal #alert-icon {
+  color: #C42126;
+  margin-top: 1rem;
+}
+#alert-modal .modal-body {
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+.modal-footer {
   border-top: none;
 }
 

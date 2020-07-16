@@ -104,16 +104,26 @@ main {
       }
     }
   }
-
   .form-group {
     textarea {
       font-family: $sans-font-stack;
     }
   }
+}
 
-  .modal-footer {
-    border-top: none;
+#alert-modal {
+  #alert-icon {
+    color: $democracy-now-red;
+    margin-top: 1rem;
   }
+
+  .modal-body {
+    font-family: $sans-font-stack;
+  }
+}
+
+.modal-footer {
+  border-top: none;
 }
 
 .btn {
