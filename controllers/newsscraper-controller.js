@@ -7,12 +7,14 @@ const router = require('express').Router();
 
 // Local resources
 const db = require('../models');
-const source = 'https://www.democracynow.org/';
+const MONGODB_URI =
+  process.env.MONGODB_URI || 'mongodb://localhost/newsscraperdb';
 const defaultImg = '/assets/img/dn-default.png';
+const source = 'https://www.democracynow.org/';
 
 // Mongo Database
 mongoose.connect(
-  'mongodb://localhost/newsscraperdb',
+  MONGODB_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
