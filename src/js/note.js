@@ -12,9 +12,6 @@ $(() => {
 
     $.get(`/notes/${artId}/${artTitle}`)
       .then(async (response) => {
-        // DEBUG:
-        // console.log(JSON.stringify(response));
-
         if (response) {
           const notes = response.notes;
           let artNotes;
