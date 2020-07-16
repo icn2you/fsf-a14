@@ -58,10 +58,23 @@
       <div class="form-group">
         <textarea id="new-art-note" class="form-control" rows="3" placeholder="New note ..."></textarea>
       </div>
-      <div class="modal-footer">
-        <div class="mx-auto">
-          <button id="save-note" type="button" class="btn btn-dark btn-sm" data-dismiss="modal"><i class="far fa-save"></i>&nbsp;Save Note</button>
-        </div>
+      <div class="modal-footer mx-auto">
+        <button id="save-note" type="button" class="btn btn-dark btn-sm" data-dismiss="modal"><i class="far fa-save"></i>&nbsp;Save Note</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Alerts Modal -->
+<div id="alert-modal" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="alert-msg" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div id="alert-icon" class="mb-1 text-center"><i class="fas fa-exclamation-circle fa-3x"></i></div>
+      <div id="alert-msg" class="modal-body text-center"></div>
+      <div class="modal-footer mx-auto">
+        <button type="button" class="btn btn-dark btn-sm" data-dismiss="modal">
+          <i class="far fa-times-circle"></i>&nbsp;Close
+        </button>
       </div>
     </div>
   </div>
