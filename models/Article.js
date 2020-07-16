@@ -32,7 +32,8 @@ module.exports = (() => {
     },
     saved: {
       type: Boolean,
-      default: false
+      default: false,
+      required: true
     },
     notes: [{
       type: Schema.Types.ObjectId,
