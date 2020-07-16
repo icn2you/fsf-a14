@@ -47,9 +47,9 @@ const handleScrape = async (response) => {
       title: result.title,
       date: result.date
     }, {
-      title: result.title,
+      // title: result.title,
       link: result.link,
-      date: result.date,
+      // date: result.date,
       image: result.image
     }, {
       new: true,
@@ -63,16 +63,20 @@ const handleScrape = async (response) => {
 
 module.exports = (() => {
   router.get('/', (req, res) => {
-    db.Article.find({ saved: false }, (err, arts) => {
-      if (err) throw (err);
+    // Check to see if the saved field is marked false OR if
+    // it does not exist ...
+    db.Article.find(
+      { $or: [{ saved: false }, { saved: { $exists: false } }] },
+      (err, arts) => {
+        if (err) throw (err);
 
-      const news = arts.map((art) =>
-        Object.defineProperty(art, 'date', {
-          value: moment(art.date).format('MM/DD/YYYY')
-        }));
+        const news = arts.map((art) =>
+          Object.defineProperty(art, 'date', {
+            value: moment(art.date).format('MM/DD/YYYY')
+          }));
 
-      res.render('index', { headlines: news });
-    }).sort({ date: -1 }).limit(10);
+        res.render('index', { headlines: news });
+      }).sort({ date: -1 }).limit(20);
   });
 
   router.get('/notes/:id/:title', (req, res) => {
