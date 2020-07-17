@@ -47,9 +47,7 @@ const handleScrape = async (response) => {
       title: result.title,
       date: result.date
     }, {
-      // title: result.title,
       link: result.link,
-      // date: result.date,
       image: result.image
     }, {
       new: true,
