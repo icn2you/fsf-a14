@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/icn2you/fsf-a14#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "@handlebars/allow-prototype-access": "^1.0.3",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
@@ -45,7 +46,8 @@
     "mongoose": "^5.9.20",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "popper.js": "^1.16.1"
   },
   "devDependencies": {
     "css-loader": "^3.6.0",
