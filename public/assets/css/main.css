@@ -1,142 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300;700&display=swap");
-body {
-  font-family: "Times New Roman", "Times", "Georgia", serif;
-}
+/* Error: Can't find stylesheet to import.
+ *   ,
+ * 1 | @import '~bootstrap/scss/bootstrap';
+ *   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ *   '
+ *   src/scss/main.scss 1:9  root stylesheet */
 
-a, a:active, a:focus, a:hover {
-  color: #C42126;
-  text-decoration: none;
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Can't find stylesheet to import.\a   \2577 \a 1 \2502  @import '~bootstrap/scss/bootstrap';\a   \2502          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\a   \2575 \a   src/scss/main.scss 1:9  root stylesheet";
 }
-
-a:active, a:focus, a:hover {
-  text-decoration: underline;
-}
-
-.uppercase {
-  text-transform: uppercase;
-}
-
-header nav .navbar-brand {
-  font-size: 1.5rem;
-}
-header nav #navbar-links {
-  font-family: "Open Sans Condensed", sans-serif;
-  font-weight: 700;
-}
-header .jumbotron-fluid {
-  background-image: url("/assets/img/resist-sign.png");
-  background-size: cover;
-  border-bottom: 2px solid #191F24;
-  position: relative;
-}
-header .jumbotron-fluid::before {
-  content: "";
-  background-color: rgba(255, 255, 255, 0.8);
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-header .display-4, header .lead {
-  font-weight: 600;
-  position: relative;
-}
-header .display-4 {
-  color: #191F24;
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
-header .lead {
-  color: #C42126;
-}
-
-main .card, main .card-footer {
-  border-color: #C42126;
-}
-main .card-img-top {
-  border-bottom: 1px solid #C42126;
-}
-main .card-title {
-  font-weight: 600;
-}
-main .card-text, main .text-muted {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
-main #dn-arrow {
-  max-width: 16px;
-}
-
-#notes-modal .modal-body, #notes-modal .form-group {
-  margin: 0 1rem;
-}
-#notes-modal .container {
-  margin-bottom: 0;
-}
-#notes-modal #art-notes .timestamp {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
-#notes-modal #art-notes button {
-  background-color: transparent;
-  border: none;
-}
-#notes-modal #art-notes button:active, #notes-modal #art-notes button:focus, #notes-modal #art-notes button:hover {
-  color: #C42126;
-}
-#notes-modal .form-group textarea {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
-
-#alert-modal #alert-icon {
-  color: #C42126;
-  margin-top: 1rem;
-}
-#alert-modal .modal-body {
-  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-}
-
-.modal-footer {
-  border-top: none;
-}
-
-.btn {
-  font-family: "Open Sans Condensed", sans-serif;
-  font-weight: 700;
-}
-
-.btn-danger {
-  background-color: #C42126;
-  border-color: #C42126;
-}
-
-.btn-dark {
-  background-color: #191F24;
-  border-color: #191F24;
-}
-.btn-dark:active, .btn-dark:focus, .btn-dark:hover {
-  background-color: #A1A8AE;
-  border-color: #A1A8AE;
-}
-
-footer {
-  background: #191F24;
-  border-top: 5px #C42126 solid;
-  color: white;
-  font-family: "Open Sans Condensed", sans-serif;
-  font-weight: 300;
-}
-footer #copyright {
-  font-size: 0.875rem;
-  font-weight: 700;
-  margin: 1.5vh 0 1vh;
-}
-footer #attribution {
-  font-size: 0.85rem;
-  line-height: 1.25em;
-  margin-bottom: 2vh;
-}
-footer a, footer a:active, footer a:hover, footer a:visited {
-  color: #C42126;
-  font-weight: 700;
-}
-
-/*# sourceMappingURL=main.css.map */
