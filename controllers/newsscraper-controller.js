@@ -178,7 +178,7 @@ module.exports = (() => {
     }
 
     res.end();
-});
+  });
 
   router.put('/clear', async (req, res) => {
     try {
