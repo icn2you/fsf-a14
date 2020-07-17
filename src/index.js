@@ -1,3 +1,4 @@
+require('bootstrap');
 require('./scss/main.scss');
 
 require('./js/clear');
