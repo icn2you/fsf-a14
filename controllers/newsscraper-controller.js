@@ -183,7 +183,7 @@ module.exports = (() => {
   router.put('/clear', async (req, res) => {
     try {
       const result = await db.Article.deleteMany(
-        { saved: { $eq: false } }).exec();
+        { $or: [{ saved: { $eq: false } }, { saved: { $exists: false } }] }).exec();
 
       if (result.deletedCount > 0 && result.ok === 1) {
         res.send({ cleared: true });
